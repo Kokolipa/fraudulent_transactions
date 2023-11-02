@@ -1,9 +1,12 @@
-# Ignore folders
+# Ignore folders & Files
 CSVs
 *.csv
+Data
+Fraud_Encoded.csv
 
 # Ignore .DS_Store
 .DS_Store
 
 # Ignore __pycache__
 __pycache__
+
