@@ -1,0 +1,83 @@
+/* Create styles for P4t credit fraud project */
+/* CONTENTS */
+    /* CONTAINER SETTINGS */    
+    /* FONT SETTINGS - HEADINGS & PARAGRAPHS */
+    /* BUTTON SETTINGS */
+
+
+/* CONTAINER SETTINGS */
+.custom-height {
+    padding: 10px
+  }
+  
+.height-20 {
+    height: 20px;
+  }
+  
+.height-100 {
+    height: 100px;
+  }
+  
+.height-25 {
+    height: 25px;
+  }
+
+.hero_banner_layout {
+      margin-bottom: 40px; 
+  }
+
+.tile_layout {
+    margin-top: 400px; 
+}
+
+.file_upload_layout{
+      margin-top: 450px; 
+      background-color: #f8f9fa;
+  }
+
+.transactions_layout{
+    height: 500px;
+    margin-bottom: 500px; 
+    background-color: #f8f9fa;
+}
+
+.dashboard_layout{
+  margin-top: 450px; 
+  height: 500px;
+  margin-bottom: 500px; 
+  background-color: #f8f9fa;
+}
+
+/* FONT SETTINGS - HEADINGS & PARAGRAPHS */
+h1{
+    color:rgb(144,12,63);
+    font-family: 'Roboto', serif;
+    font-size: 50px;
+    text-align:center
+}
+
+p{
+    color: #6c757d;
+    font-family: "Helvetica Neue", sans-serif;
+    font: 16px;
+    text-align:center
+}
+
+.navbar-brand{
+  color: #6c757d;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  text-align:center 
+}
+
+/* BUTTON SETTINGS */
+
+input[type="submit"] {
+    background-color: rgba(144, 12, 63); 
+    color: white; 
+    padding: 5px 15px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 10px 0; 
+}
