@@ -1,10 +1,5 @@
 from flask import Flask, request, render_template
-from dash import dash, html
-import plotly.express as px
 import pandas as pd
-import joblib
-
-df = pd.read_csv("insert file name")
 
 app = Flask(__name__)
 
@@ -13,55 +8,50 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# DEFINE ROUTE FOR TRANSACTION & ML MODEL RESULTS
-
-# Load the ML model
-model = joblib.load("INSERT NAME OF MODEL .PKL FILE - CONSIDER FILE PATH")
-
-# Upload file
+# DEFINE ROUTE FOR TRANSACTIONS PAGE
 @app.route('/transactions')
-def upload_file():
-    return render_template('upload.html')
+def transactions():
+    return render_template('transactions.html')
 
-# Run the model
-@app.route('/transactions', methods=['POST'])
-def transaction_predictions():
-    if 'file' not in request.files:
-        return "No file part"
+# Upload route for processing the uploaded file
+@app.route('/upload', methods=['POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            # Save the uploaded file
+            file.save('uploaded_file.csv')
 
-    file = request.files['file']
+            # Read the CSV file using pandas
+            df = pd.read_csv('uploaded_file.csv')
 
-    if file.filename == '':
-        return "No selected file"
+            # Extract the columns to return in table
+            selected_column = df[['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'trans_num', 'is_fraud']]
 
-    if file:
-        
-        data_prediction = pd.read_csv(file)
-        
-        # Perform prediction using the loaded model
-        prediction = model.predict(data_prediction)
-        
-        # Handle the prediction as needed
-        return f"Potentially Fraudlent Transactions: {prediction}"
+            def format_fraud_column(val):
+                if val == 0:
+                    return '<span style="font-size: 25px; text-align: right; color: green;">&#x2713</span>'  #insert green tick if not fraud
+                elif val == 1:
+                    return '<span style="font-size: 25px; text-align: right; color: orange;">&#10071</span>'  #insert orange exclamation if potentially fraudulent
+                else:
+                    return val
 
-if __name__ == '__main__':
-    app.run(debug=True)
+            # Sort the 'is_fraud' column in descending order
+            selected_column = selected_column.sort_values(by='is_fraud', ascending=False)
 
+            # Apply the formatting function to the 'is_fraud' column
+            selected_column['is_fraud'] = selected_column['is_fraud'].apply(format_fraud_column)
 
-# DEFINE ROUTE FOR DASHBOARD
+            # Convert the selected data to an HTML table
+            table_html = selected_column.to_html(index=False, escape=False)
+
+            # Return the HTML content as the response
+            return render_template('transactions.html', table_data=table_html)
+
+# UPLOAD HANDLING OF TRANSACTIONS DATA
 @app.route('/dashboard')
 def dashboard():
-
-    # Create a Dash dashboard app 
-    dash_app = dash.Dash(__name__, server = app, url_base_pathname = "/dashboard/")
-
-    # Define the layout in html
-    dash_app.layout = html.Div("INSERT DASH CODE HERE")
-
-    # render the dashboard to the html page
     return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-

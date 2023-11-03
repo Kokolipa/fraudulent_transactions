@@ -1,11 +1,13 @@
 /* Create styles for P4t credit fraud project */
 /* CONTENTS */
     /* CONTAINER SETTINGS */    
+    /* TRANSACTIONS HTML SETTINGS */
+    /* DASHBOARD HTML SETTINGS */
     /* FONT SETTINGS - HEADINGS & PARAGRAPHS */
     /* BUTTON SETTINGS */
 
 
-/* CONTAINER SETTINGS */
+/* GENERAL CONTAINER SETTINGS */
 .custom-height {
     padding: 10px
   }
@@ -23,26 +25,50 @@
   }
 
 .hero_banner_layout {
-      margin-bottom: 40px; 
+      margin-bottom: 60px; 
   }
 
 .tile_layout {
     margin-top: 400px; 
 }
 
+/* TRANSACTIONS HTML SETTINGS */
 .file_upload_layout{
-      margin-top: 450px; 
+      margin-top: 450px;
+      margin-bottom: auto; 
       background-color: #f8f9fa;
   }
 
 .transactions_layout{
     height: 500px;
-    margin-bottom: 500px; 
+    margin: 0 auto;
+    margin-bottom: auto; 
     background-color: #f8f9fa;
 }
 
+.transactions_table {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.transactions_table th {
+    background-color: rgb(144,12,63); 
+    color:white;
+    font-family: Arial, sans-serif; 
+    font-weight: bold; 
+    text-align: center;
+    padding: 8px
+}
+
+.transactions_table tr {
+  font-family: Arial, sans-serif; 
+  text-align: left;
+  padding: 8px
+}
+
+/* DASHBOARD HTML SETTINGS */
 .dashboard_layout{
-  margin-top: 450px; 
+  margin-top: 500px; 
   height: 500px;
   margin-bottom: 500px; 
   background-color: #f8f9fa;
@@ -81,3 +107,5 @@ input[type="submit"] {
     cursor: pointer; 
     margin: 10px 0; 
 }
+
+/* DASH SETTINGS */
