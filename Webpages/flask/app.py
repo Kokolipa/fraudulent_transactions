@@ -1,9 +1,11 @@
+#  SET UP DEPENDENCIES
+
 from flask import Flask, request, render_template
 import pandas as pd
-from dash_application import create_dash_application
-# from pathlib import Path # To specify the the file path for reading the csv file
+from pathlib import Path # To specify the the file path for reading the csv file
 from sklearn.preprocessing import StandardScaler
 import numpy as np # For numerical operations and calculations
+import pickle
 
 app = Flask(__name__)
 
@@ -29,6 +31,11 @@ def upload():
         if file:
             # Save the uploaded file
             file.save('uploaded_file.csv')
+
+        #  LOAD THE PICKLED MODEL
+
+            with open('model.pkl', 'rb')as file:
+                model = pickle.load(file)
             
         #  ENCODING IMPORTED CSV 
 
@@ -127,9 +134,16 @@ def upload():
             # Drop is_fraud column
             fraud_df.drop(['is_fraud'], axis=1, inplace=True)
 
-            
-        #  INSERT PICKLE FUNCTION
+            # Save the fraud_df to CSV file
+            file_path = "fraud_df.csv"
 
+            # Use the to_csv method to export teh DataFrame to CSV file
+            fraud_df.to_csv(file_path, index = False)
+            
+        #  USE LOADED PICKELED MODEDL TO PERFORM PREDICTIONS
+            predictions_df = model.predictions(fraud_df)
+
+            
 
 
 
