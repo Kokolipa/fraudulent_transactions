@@ -14,7 +14,6 @@
 
   </head>
   <body>  
-    
     <!-- NAVIGATION BAR -->
     <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
@@ -42,13 +41,12 @@
 
     <!-- HERO BANNER-->
     <hr>
-      <div class="hero_banner_layout">
-        <div class="container-fluid" style="height: 1px">
-          <img src="{{ url_for('static', filename='/images/homepg_image.jpg') }}" width="100%" height="300">
-          <div class="container-fluid" >
-            <br>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-            <h1 class="jumbotron-heading">Credit Card Fraud Analysis</h1>  
+    <div class="hero_banner">
+      <img src="{{ url_for('static', filename='/images/homepg_image.jpg') }}" class="banner_image" alt="Banner Image">
+      <div class="container-fluid" >
+        <br>
+        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+          <h1 class="jumbotron-heading">Credit Card Fraud Analysis</h1>  
             <br>
             <p class="lead text-muted">Our project utilises machine learning to identify fraudulent credit card transactions.</p>  
             <br>     
@@ -66,7 +64,7 @@
               <div class="card mb-5 box-shadow">
                   <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="{{ url_for('static', filename='/images/home_tile1.png')}}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
                 <div class="card-body">
-                  <p class="card-text">Check for fraudlent transactions.</p>
+                  <p class="card-text">Step 1 - Check for fraudlent transactions.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a href="{{ url_for('transactions')}}" class="btn btn-sm btn-outline-secondary">View</a>
@@ -92,7 +90,7 @@
               <div class="card mb-5 box-shadow">
                 <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="{{ url_for('static', filename='/images/home_tile3.png')}}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
                 <div class="card-body">
-                  <p class="card-text">View your results dashboard.</p>
+                  <p class="card-text">Step 2 - View your results dashboard.</p>
                   <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                           <a href="{{ url_for('dashboard')}}" class="btn btn-sm btn-outline-secondary">View</a>
@@ -106,6 +104,6 @@
       </div>
     </div>
   </body>
-
+  
 <!-- END OF PAGE - DO NOT DELETE -->
 </html>

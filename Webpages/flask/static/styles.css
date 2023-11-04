@@ -1,42 +1,39 @@
 /* Create styles for P4t credit fraud project */
 /* CONTENTS */
     /* CONTAINER SETTINGS */    
+    /* INDEX HTML SETTINGS */
     /* TRANSACTIONS HTML SETTINGS */
     /* DASHBOARD HTML SETTINGS */
     /* FONT SETTINGS - HEADINGS & PARAGRAPHS */
     /* BUTTON SETTINGS */
+    /* DASH SETTINGS */
+    /* MISC CONTAINER SETTINGS */
 
 
-/* GENERAL CONTAINER SETTINGS */
-.custom-height {
-    padding: 10px
-  }
+
+/* INDEX HTML SETTINGS */
+
+/* .banner-image also applies to transactions & dashboard html */
+.hero_banner { 
+  margin-bottom: 10px; /* Ensures the image behaves properly */
+}
+
+.banner_image { 
+  width: 100%;
+  height: 350px;
+  max-width: 100%;
+  display: block; /* Ensures the image behaves properly */
+}
   
-.height-20 {
-    height: 20px;
-  }
-  
-.height-100 {
-    height: 100px;
-  }
-  
-.height-25 {
-    height: 25px;
-  }
-
-.hero_banner_layout {
-      margin-bottom: 60px; 
-  }
-
 .tile_layout {
-    margin-top: 400px; 
+    margin-top: 10px; 
 }
 
 /* TRANSACTIONS HTML SETTINGS */
 .file_upload_layout{
       margin-top: 450px;
-      margin-bottom: auto; 
-      background-color: #f8f9fa;
+      margin-bottom: 40px; 
+      /* background-color: #f8f9fa; */
   }
 
 .transactions_layout{
@@ -44,6 +41,27 @@
     margin: 0 auto;
     margin-bottom: auto; 
     background-color: #f8f9fa;
+}
+
+input[type="submit"] {
+  background-color: #9FA6B2; 
+  color: white; 
+  padding: 5px 15px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  margin: 10px 0; 
+}
+
+.btn {
+  background-color: #9FA6B2; 
+  color: white; 
+  padding: 5px 15px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  margin: 10px 0;
+  font-size: 16px; 
 }
 
 .transactions_table {
@@ -96,16 +114,23 @@ p{
   text-align:center 
 }
 
-/* BUTTON SETTINGS */
-
-input[type="submit"] {
-    background-color: rgba(144, 12, 63); 
-    color: white; 
-    padding: 5px 15px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    margin: 10px 0; 
-}
 
 /* DASH SETTINGS */
+
+
+/* MISC CONTAINER SETTINGS */
+.custom-height {
+  padding: 10px
+}
+
+.height-20 {
+  height: 20px;
+}
+
+.height-100 {
+  height: 100px;
+}
+
+.height-25 {
+  height: 25px;
+}
