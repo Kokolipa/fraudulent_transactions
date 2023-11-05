@@ -6,6 +6,7 @@ from pathlib import Path # To specify the the file path for reading the csv file
 from sklearn.preprocessing import StandardScaler
 import numpy as np # For numerical operations and calculations
 import pickle
+import os 
 
 app = Flask(__name__)
 
@@ -32,11 +33,15 @@ def upload():
             # Save the uploaded file
             file.save('uploaded_file.csv')
 
+        #  DEFINE THE PATH TO THE PICKLED MODEL
+            current_directory = os.path.dirname(__file__)
+            model_path = os.path.join(current_directory, '../../ML_and_dashboard/ML/model.pkl')
+
         #  LOAD THE PICKLED MODEL
 
-            with open('model.pkl', 'rb')as file:
+            with open(model_path, 'rb')as file:
                 model = pickle.load(file)
-            
+
         #  ENCODING IMPORTED CSV 
 
             fraud_df = pd.read_csv('uploaded_file.csv')
@@ -142,10 +147,6 @@ def upload():
             
         #  USE LOADED PICKELED MODEDL TO PERFORM PREDICTIONS
             predictions_df = model.predictions(fraud_df)
-
-            
-
-
 
         #  CREATE TABLE OF TRANSACTIONS 
         
