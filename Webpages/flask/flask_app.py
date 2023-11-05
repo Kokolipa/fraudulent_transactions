@@ -180,7 +180,7 @@ def upload():
             table_html = selected_column.to_html(index=False, escape=False)
 
             # Return the HTML content as the response
-            return render_template('/transactions.html', table_data=table_html)
+            return render_template('/transactions.html', table_html)
 
 # UPLOAD DASH DASHBOARD 
 @server.route('/dashboard')
