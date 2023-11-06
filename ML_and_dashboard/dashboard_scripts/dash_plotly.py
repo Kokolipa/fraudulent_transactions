@@ -18,11 +18,11 @@ from flask import Flask, redirect, session, url_for
 
 
 # Loading the dataset
-path = session.get('file_path')
+path = "/Users/galbeeir/desktop/text_flask/sample1.csv"
 
 sample_df = pd.read_csv(path, parse_dates=["trans_date_trans_time", "dob"],infer_datetime_format=True)
 
-columns_to_drop = ["Unnamed: 0", "cc_num", "unix_time", "zip"]
+columns_to_drop = ["cc_num", "unix_time", "zip"]
 sample_df = sample_df.drop(columns_to_drop, axis=1)
 
 # Formatting category & merchant
@@ -54,7 +54,7 @@ dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.mi
 # - server=flask_app => Add this to insure both Flask and Dash are running on the same server
 # - url_base_pathname= "" -> Add the url you want the dashboard to appear in relative to the HTML & Flask 127.0.0.1:8020/dashboard for example
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc_css], name="dashboard")
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc_css], routes_pathname_prefix="/dashboard/")
 
 # Configuring the SLATE style theme on the figures
 load_figure_template("SLATE")
