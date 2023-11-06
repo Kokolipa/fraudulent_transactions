@@ -1,6 +1,6 @@
 # IMPORT DEPENDENCIES
 # ----------------------------------------------------------------
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session, url_for
 import pandas as pd
 import numpy as np 
 from pathlib import Path 
@@ -9,17 +9,17 @@ import random
 from datetime import datetime, timedelta
 import pickle
 
-app = Flask(__name__)
+server = Flask(__name__)
 
-@app.route('/')
+@server.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/transactions')
+@server.route('/transactions')
 def transactions():
     return render_template('transactions.html')
 
-@app.route('/upload', methods=['POST'])
+@server.route('/upload', methods=['POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['file']
@@ -189,9 +189,9 @@ def upload():
             except Exception as e:
                 return f"An error occurred: {str(e)}"
 
-@app.route('/dashboard')
+@server.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    server.run(debug=True)
