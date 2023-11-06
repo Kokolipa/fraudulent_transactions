@@ -1,5 +1,6 @@
 import dash
 from dash import html, dcc
+import dash_bootstrap_components as dbc
 import subprocess
 import pandas as pd
 from flask import request, render_template
@@ -23,6 +24,7 @@ dash_app.layout = html.Div([
         html.Link(rel='preconnect', href='https://fonts.gstatic.com', crossOrigin='true'),
         html.Link(rel='stylesheet', href='/static/styles.css'),  # Replace with the correct path
     ]),
+    
     html.Div([
         html.Nav(className='navbar navbar-dark bg-dark fixed-top', children=[
             html.Div(className='container-fluid', children=[
