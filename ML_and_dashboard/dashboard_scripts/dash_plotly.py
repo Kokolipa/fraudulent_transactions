@@ -18,7 +18,7 @@ from flask import Flask, redirect, session, url_for
 
 
 # Loading the dataset
-path = "/Users/galbeeir/desktop/text_flask/sample1.csv"
+path = "/Users/galbeeir/Desktop/git/Project 4 - Fradulent Transactions/fraudulent_transactions/Webpages/flask_apps/processed_data.csv"
 
 sample_df = pd.read_csv(path, parse_dates=["trans_date_trans_time", "dob"],infer_datetime_format=True)
 
@@ -71,7 +71,7 @@ color_list = ["#FC0303", "#31FC03"]
 
 # Determining the app_layout
 app.layout = html.Div(
-    style={"width": "80%", "height": "80%", "margin-left": "10%", "margin-right": "10%", "margin-top": "20%"},
+    style={"width": "80%", "height": "80%", "margin-left": "10%", "margin-right": "10%", "margin-top": "3%"},
     children=[
     dbc.Row(html.H1(id="header"), style={"color":"white", "margin-top":"5px", "margin-left":"5px", "fontSize": "35px"}),
     dbc.Row(dbc.Card(dbc.RadioItems(

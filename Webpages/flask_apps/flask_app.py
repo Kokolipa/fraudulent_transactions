@@ -19,7 +19,7 @@ def index():
 def transactions():
     return render_template('transactions.html')
 
-@server.route('/upload', methods=['POST'])
+@server.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
         file = request.files['file']
@@ -195,3 +195,6 @@ def dashboard():
 
 if __name__ == '__main__':
     server.run(debug=True)
+
+
+# pd.read_html(127.1.1.0:8080/upload/uploaded_file.csv)
