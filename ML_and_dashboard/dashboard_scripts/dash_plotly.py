@@ -51,7 +51,10 @@ percentage_fraudulent_formatted = f"%{percentage_fraudulent}"
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
 # Nameing the app and using the SLATE style theme
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc_css])
+# - server=flask_app => Add this to insure both Flask and Dash are running on the same server
+# - url_base_pathname= "" -> Add the url you want the dashboard to appear in relative to the HTML & Flask 127.0.0.1:8020/dashboard for example
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc_css], name="dashboard")
 
 # Configuring the SLATE style theme on the figures
 load_figure_template("SLATE")
