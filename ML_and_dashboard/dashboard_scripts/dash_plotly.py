@@ -14,37 +14,37 @@ from dash_bootstrap_templates import load_figure_template
 import dash_bootstrap_components as dbc
 
 # * Flask Dependencies
-from flask import Flask, session
+from flask import Flask, redirect, session, url_for
 
 
 # Loading the dataset
 path = session.get('file_path')
 
-fraud_df = pd.read_csv(path, parse_dates=["trans_date_trans_time", "dob"],infer_datetime_format=True)
+sample_df = pd.read_csv(path, parse_dates=["trans_date_trans_time", "dob"],infer_datetime_format=True)
 
 columns_to_drop = ["Unnamed: 0", "cc_num", "unix_time", "zip"]
-fraud_df = fraud_df.drop(columns_to_drop, axis=1)
+sample_df = sample_df.drop(columns_to_drop, axis=1)
 
 # Formatting category & merchant
-fraud_df['merchant'] = fraud_df['merchant'].str.replace("fraud_", "")
-fraud_df['category'] = fraud_df['category'].str.replace("_", " ")
+sample_df['merchant'] = sample_df['merchant'].str.replace("fraud_", "")
+sample_df['category'] = sample_df['category'].str.replace("_", " ")
 
 # Calculating the age of the person at the time of the transaction
-fraud_df['age'] = (fraud_df['trans_date_trans_time'] - fraud_df['dob']).apply(lambda x: x.days // 365)
+sample_df['age'] = (sample_df['trans_date_trans_time'] - sample_df['dob']).apply(lambda x: x.days // 365)
 
 # Dropping the dob column
-fraud_df = fraud_df.drop('dob', axis=1)
+sample_df = sample_df.drop('dob', axis=1)
 
 # Modifying the gender column
-fraud_df['gender'] = fraud_df['gender'].str.replace("M", "Male")
-fraud_df['gender'] = fraud_df['gender'].str.replace("F", "Female")
+sample_df['gender'] = sample_df['gender'].str.replace("M", "Male")
+sample_df['gender'] = sample_df['gender'].str.replace("F", "Female")
 
 # Amount of transactions in the dataset
-total_transactios = fraud_df['trans_num'].count()
+total_transactios = sample_df['trans_num'].count()
 total_transactios_formatted = str(total_transactios)[:3] +"," +str(total_transactios)[3:]
 
 # The percentage of fraudulent transactions relative to non-fraudulent transactions
-percentage_fraudulent = round((fraud_df.query("is_fraud == 1")['is_fraud'].count()) / (fraud_df.query("is_fraud == 0")['is_fraud'].count()), 3)
+percentage_fraudulent = round((sample_df.query("is_fraud == 1")['is_fraud'].count()) / (sample_df.query("is_fraud == 0")['is_fraud'].count()), 3)
 percentage_fraudulent_formatted = f"%{percentage_fraudulent}"
 
 # Importing external stylesheets
@@ -95,7 +95,7 @@ app.layout = html.Div(
         dbc.Col(dbc.Card([
             dcc.Dropdown(
                 id="features",
-                options=fraud_df.select_dtypes(include='object').columns[:-1],
+                options=sample_df.select_dtypes(include='object').columns[:-1],
                 value= "category",
                 className='dbc'
             ),
@@ -137,11 +137,11 @@ def dashboard(filter_item, feature, sort_order):
 
     # * Filter the datset based on the selected filter item
     if filter_item == 1:
-        df = fraud_df.query("is_fraud == 1")
+        df = sample_df.query("is_fraud == 1")
     elif filter_item == 0:
-        df = fraud_df.query("is_fraud == 0")
+        df = sample_df.query("is_fraud == 0")
     else:
-        df = fraud_df
+        df = sample_df
 
     # * Plot the bar chart 
     bar = (
