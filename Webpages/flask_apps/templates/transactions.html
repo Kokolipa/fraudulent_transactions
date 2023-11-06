@@ -71,21 +71,25 @@
             <div class="col-3">
               <div class="card">
                 <div class="card-body">
-                <p class="card-title">Select file to upload:</p>
+                  <p class="card-title">Select file to upload:</p>
                   <form action="/upload" method="post" enctype="multipart/form-data">
-                      <div class="row align-items-left">
-                          <div class="form-group">
-                              <div class="col">
-                                  <input type="file" name="file">
-                                  <br>
-                                  <input type="submit" value="Upload">
-                              </div>
+                    <div class="row align-items-left">
+                      <div class="form-group">
+                        <div class="col">
+                          <div class="mb-3">
+                            <form action="/upload" method="post" enctype="multipart/form-data">
+                              <input type="file" name="file">
+                              <input type="submit" value="Upload">
+                            </form>                         
                           </div>
+                        </div>
                       </div>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
+
 
             <!-- Third Column - Empty -->
             <div class="col-2">
