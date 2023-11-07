@@ -136,26 +136,42 @@ To evaluate the decision tree model, we took the following approaches:
 
 
 2. **Model 2:** Running a decision tree model with the following specifications:
+   
 a. criterion = ‘log_loss’ -> To evaluate how well the model predicts probabilities for each class.
+
 b. splitter = ‘best’ -> A default spec to split the leaves of the tree.
+
 c. max_depth = 12 -> The depth of the tree model.
+
 d. random_state = 72
+
 e. max_features = 10 -> The maximum number of features that the algorithm considers when splitting a node.
 
 ![image](https://github.com/Kokolipa/fraudulent_transactions/assets/132874272/65da6761-47e4-4caa-a607-6f7050b5f565)
 
 
 3. **Model 3:** Running a GridSearchCV tool to find the optimal parameters for the decision tree model with the following specifications enabled:
+   
 a. criterion’:[‘gini’,‘entropy’, ‘log_loss’] -> Enabling the model to evaluate all the different evaluation parameters for the tree “impurity”/“probabilities of binary classification problems”/ “information gain” (entropy).
+
 b. max_depth: [7,8,9,10,11,12] -> Since our dataset contains above 1M records. Reducing the depth of the tree below seven will reduce all accuracy scores within the scope of the classification report. However, above 12 can be classified as an overfitted tree, hence the depth range between seven and a max of twelve.
+
 c. ‘max_features’: [‘auto’, ‘sqrt’, ‘log2’] ->
+
 auto = considering the best split at each node.
+
 sqrt = limiting the number of features to the square root of the total number of features in the dataset.
+
 ’log2 = Limiting the number of features to the base-2 logarithm of the total number of features in the dataset.
+
 d. ’min_samples_split: [8000,10000,15000,25000, 30000] -> How many samples are required to split an internal node during the training process?
+
 e. class_weight -> Because our dataset is imbalanced, with a large proportion of non-fraudulent transactions and a low proportion of fraudulent ones, specifying the weight, the ratio between these two, enables the model to give more importance to the minority class (fraudulent transactions) during the training process.
+
 f. Scorer (recall) -> To focus our model on the most critical metric, recall.
+
 g. n_jobs -> specifies the number of CPU cores to use when performing the cross-validated grid search.
+
 h. cv=10 (cross-validation)-> We used k-fold 10 to separate our dataset into 10 equal subsets. So, we evaluate nine subsets of the data and leave one subset for validation.
 
 ![image](https://github.com/Kokolipa/fraudulent_transactions/assets/132874272/532ab7f8-e4f0-497b-931d-9360a0863132)
