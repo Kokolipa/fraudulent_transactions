@@ -177,10 +177,10 @@ From the above models, we found that model 3 performed the best, with 0.9 recall
 - from sklearn.tree import plot_tree # * Tree plotting function
 - from sklearn.metrics import make_scorer, recall_score
 
-# * This library will be used to optimise the parameters of the decision tree
+**This library will be used to optimise the parameters of the decision tree**
 - from sklearn.model_selection import GridSearchCV
 
-# * Pickling library
+**Pickling library**
 - import pickle
 
 ### Part 3: Create and Deploy Web Application
