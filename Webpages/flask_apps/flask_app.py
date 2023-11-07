@@ -248,7 +248,7 @@ total_transactios_formatted = str(total_transactios)[:3] +"," +str(total_transac
 
 # * The percentage of fraudulent transactions relative to non-fraudulent transactions
 percentage_fraudulent = round((sample_df.query("is_fraud == 1")['is_fraud'].count()) / (sample_df.query("is_fraud == 0")['is_fraud'].count()), 3)
-percentage_fraudulent_formatted = f"%{percentage_fraudulent}"
+percentage_fraudulent_formatted = f"{percentage_fraudulent}%"
 
 # * Importing external stylesheets
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
