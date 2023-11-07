@@ -52,7 +52,6 @@ https://www.kaggle.com/datasets/kartik2112/fraud-detection
     - [Part 2: Supervised Machine Learning Models](#part-2-supervised-machine-learning-models)
     - [Part 3: Create and Deploy Web Application](#part-3-create-and-deploy-web-application)
 - [Getting Started](#getting-started)
-- [Installing](#installing)
 - [Contributing](#contributing)
 - [Sources](#sources)
 
@@ -183,7 +182,12 @@ To evaluate the decision tree model, we took the following approaches:
 From the above models, we found that model 3 performed the best, with 0.9 recall score for Fraudulent transactions, 0.93 for non-fraudulent ones and an overall score of 0.93.
 - Regarding precision, it’s important to note that the precision score for fraudulent transactions was low at 0.06, while it was 1 for non-fraudulent transactions. This discrepancy arises due to the dataset’s imbalance, predominantly comprising non-fraudulent transactions. Consequently, achieving a high precision score for fraudulent transactions is inherently challenging in such imbalanced datasets.
 
-**Our Python Script:**
+**Our Scripts:**
+- ml_model.ipynb
+- ml_model_remove_categorical.ipynb
+
+**Pickled Model:**
+- model.pkl
 
 **Tools/Libraries We Imported:**
 
@@ -274,8 +278,6 @@ From the above models, we found that model 3 performed the best, with 0.9 recall
 **To activate dev environment:**
 - Open Anaconda Prompt
 - Activate dev environment, type 'conda activate dev'
-
-## Installing
 
 
 ## Contributing
