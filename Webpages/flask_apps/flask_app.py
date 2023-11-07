@@ -264,19 +264,69 @@ FILTER_LABELS = {
 
 
 # * Determining the app_layout
-app.layout = html.Div(
-    style={"width": "80%", "height": "80%", "margin-left": "10%", "margin-right": "10%", "margin-top": "3%"},
-    children=[
-    dbc.Row(html.H1(id="header"), style={"color":"white", "margin-top":"5px", "margin-left":"5px", "fontSize": "35px"}),
-    dbc.Row(dbc.Card(dbc.RadioItems(
-        id="dataFilter",
-        options= [
-            {'label': 'Fraudulent', 'value': 1},
-            {'label': 'Non-Fraudulent', 'value': 0},
-            {'label': 'All', 'value': -1}],
-            value=0,
-            inline=True
-    ), style={"textAlign":"center"})),
+app.layout = html.Div([
+    html.Header([
+        html.Meta(charSet='UTF-8'),
+        html.Meta(name='viewport', content='width=device-width, initial-scale=1.0'),
+        html.Meta(httpEquiv='X-UA-Compatible', content='ie=edge'),
+        html.Title('Credit Card Fraud Analysis-dashboard'),
+        # Define the CSS links
+        html.Link(rel='preconnect', href='https://fonts.googleapis.com'),
+        html.Link(rel='preconnect', href='https://fonts.gstatic.com', crossOrigin='true'),
+        html.Link(rel='stylesheet', href='/static/styles.css'),  # Replace with the correct path
+    ]),
+    
+    html.Nav(className='navbar navbar-dark bg-dark fixed-top', children=[
+        html.Div(className='container-fluid', children=[
+            html.A('Gal Beeri, Katharine Tamas, Mireille Walton', className='navbar-brand'),
+            html.Button(type='button', style={'font-size': '14px'}, className='navbar-toggler', **{
+                'data-bs-toggle': 'offcanvas',
+                'data-bs-target': '#offcanvasDarkNavbar',
+                'aria-controls': 'offcanvasDarkNavbar',
+                'aria-label': 'Toggle navigation'
+            }, children=[
+                dcc.Link('Home', className='nav-link', href='/', target="_blank"),
+            ]),
+        ]),
+    ]),
+
+    # HERO BANNER
+    html.Div(className='hero_banner', style={'height': '20px'}, children=[
+        html.Img(src='/static/images/homepg_image.jpg', width='100%', height='350px'),
+        html.Div(className='container-fluid', children=[
+            html.Br(),
+            html.Div(className='row', children=[
+                html.Div(className='col-md-2'),
+                html.Div(className='col-md-8', style={'height': '120px', 'margin-bottom': '300px'}, children=[
+                    html.Br(),
+                ]),
+                html.Div(className='col-md-2'),
+            ]),
+        ]),
+    ]),
+                html.Div(children=[
+                    html.Div(className='container-fluid', children=[
+                        html.Div(className='row', style={'margin-top': '280px', 'backgroun-color':'rgba(15, 15, 15, 0.5)'}, children=[
+                            html.Div(className='col-3 mx-auto my-5', children=[
+                            ]),
+                        ]),
+                    ]),
+                ]),
+
+
+    html.Div(
+        style={"width": "80%", "height": "80%", "margin-left": "8%", "margin-right": "8%"},
+        children=[
+        dbc.Row(html.H1(id="header"), style={"color":"white", "margin-top":"5px", "margin-bottom":"10px", "margin-left":"5px", "fontSize": "35px"}),
+        dbc.Row(dbc.Card(dbc.RadioItems(
+            id="dataFilter",
+            options= [
+                {'label': 'Fraudulent', 'value': 1},
+                {'label': 'Non-Fraudulent', 'value': 0},
+                {'label': 'All', 'value': -1}],
+                value=0,
+                inline=True
+        ), style={"textAlign":"center"})),
     html.Br(),
     dbc.Row([
         dbc.Col(dbc.Card(f"Total Transactions: {total_transactios_formatted}"), style={"textAlign":"center",
@@ -307,6 +357,7 @@ app.layout = html.Div(
         ]),
     html.Br(),
     dbc.Row(dbc.Card(dcc.Graph(id="scatterMapBox", style={"width": "100%"})))
+    ]),
 ])
 
 # * Configuring the Callback function
@@ -398,7 +449,7 @@ def dashboard(filter_item, feature, sort_order):
         annotations=[dict(text='Gender %',
                      x=0.5,
                      y=0.5,
-                     font_size=20,
+                     font_size=16,
                      showarrow=False)],
         title = {
             "x": 0.48
