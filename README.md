@@ -137,15 +137,15 @@ To evaluate the decision tree model, we took the following approaches:
 
 2. **Model 2:** Running a decision tree model with the following specifications:
    
-        a. criterion = ‘log_loss’ -> To evaluate how well the model predicts probabilities for each class.
-        
-        b. splitter = ‘best’ -> A default spec to split the leaves of the tree.
-        
-        c. max_depth = 12 -> The depth of the tree model.
-        
-        d. random_state = 72
-        
-        e. max_features = 10 -> The maximum number of features that the algorithm considers when splitting a node.
+    a. criterion = ‘log_loss’ -> To evaluate how well the model predicts probabilities for each class.
+    
+    b. splitter = ‘best’ -> A default spec to split the leaves of the tree.
+    
+    c. max_depth = 12 -> The depth of the tree model.
+    
+    d. random_state = 72
+    
+    e. max_features = 10 -> The maximum number of features that the algorithm considers when splitting a node.
 
 ![image](https://github.com/Kokolipa/fraudulent_transactions/assets/132874272/65da6761-47e4-4caa-a607-6f7050b5f565)
 
