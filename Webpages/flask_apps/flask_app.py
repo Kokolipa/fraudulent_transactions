@@ -1,23 +1,23 @@
 # IMPORT DEPENDENCIES
 # ----------------------------------------------------------------
-# Directory libraries
+# * Directory libraries
 from pathlib import Path 
 
-# Analysis and manipulation libraries
+# * Analysis and manipulation libraries
 import pandas as pd
 import numpy as np 
 import random
 from datetime import datetime, timedelta
 
-# ML libraries
+# * ML libraries
 from sklearn.preprocessing import StandardScaler 
 import pickle
 
-# Application libraries 
+# * Application libraries 
 from flask import Flask, render_template, request, redirect, session, url_for
 # from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
-# Dashboard libraries
+# * Dashboard libraries
 import plotly.express as px 
 from dash import Dash, html, dcc
 from dash.dependencies import Output, Input
@@ -26,16 +26,23 @@ from dash_bootstrap_templates import load_figure_template
 import dash_bootstrap_components as dbc
 ################################################################################
 
+
+### FLASK APP ###
+################################################################################
+# * Instantiate the flask application
 server = Flask(__name__)
 
+# * Configure the '/' route
 @server.route('/')
 def index():
     return render_template('index.html')
 
+# * Configure the '/transactions' route
 @server.route('/transactions')
 def transactions():
     return render_template('transactions.html')
 
+# * Configure the '/upload' route
 @server.route('/upload', methods=['POST'])
 def upload():
     if request.method == 'POST':
@@ -161,7 +168,7 @@ def upload():
                 fraud_df.drop(['is_fraud'], axis=1, inplace=True)
                 
                 
-                ### PICKELED THE DATA ###
+                ### USE THE PICKEL MODEL TO PREDICT FRAUDULENT TRANSACTIONS ###
                 ################################################################
                 # * Load the pickeled model
                 pickled_model = pickle.load(open('model.pkl', 'rb'))
@@ -207,8 +214,9 @@ def upload():
                 return f"An error occurred: {str(e)}"
 
 
-
-# Loading the dataset
+### DASH APP ###
+########################################################################
+# * Loading the dataset
 path = "/Users/galbeeir/Desktop/git/Project 4 - Fradulent Transactions/fraudulent_transactions/Webpages/flask_apps/processed_data.csv"
 
 sample_df = pd.read_csv(path, parse_dates=["trans_date_trans_time", "dob"],infer_datetime_format=True)
@@ -216,41 +224,38 @@ sample_df = pd.read_csv(path, parse_dates=["trans_date_trans_time", "dob"],infer
 columns_to_drop = ["cc_num", "unix_time", "zip"]
 sample_df = sample_df.drop(columns_to_drop, axis=1)
 
-# Formatting category & merchant
+# * Formatting category & merchant
 sample_df['merchant'] = sample_df['merchant'].str.replace("fraud_", "")
 sample_df['category'] = sample_df['category'].str.replace("_", " ")
 
-# Calculating the age of the person at the time of the transaction
+# * Calculating the age of the person at the time of the transaction
 sample_df['age'] = (sample_df['trans_date_trans_time'] - sample_df['dob']).apply(lambda x: x.days // 365)
 
-# Dropping the dob column
+# * Dropping the dob column
 sample_df = sample_df.drop('dob', axis=1)
 
-# Modifying the gender column
+# * Modifying the gender column
 sample_df['gender'] = sample_df['gender'].str.replace("M", "Male")
 sample_df['gender'] = sample_df['gender'].str.replace("F", "Female")
 
-# Amount of transactions in the dataset
+# * Amount of transactions in the dataset
 total_transactios = sample_df['trans_num'].count()
 total_transactios_formatted = str(total_transactios)[:3] +"," +str(total_transactios)[3:]
 
-# The percentage of fraudulent transactions relative to non-fraudulent transactions
+# * The percentage of fraudulent transactions relative to non-fraudulent transactions
 percentage_fraudulent = round((sample_df.query("is_fraud == 1")['is_fraud'].count()) / (sample_df.query("is_fraud == 0")['is_fraud'].count()), 3)
 percentage_fraudulent_formatted = f"%{percentage_fraudulent}"
 
-# Importing external stylesheets
+# * Importing external stylesheets
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
-# Nameing the app and using the SLATE style theme
-# - server=flask_app => Add this to insure both Flask and Dash are running on the same server
-# - url_base_pathname= "" -> Add the url you want the dashboard to appear in relative to the HTML & Flask 127.0.0.1:8020/dashboard for example
-
+# * Nameing the app, using the SLATE style theme, creating a route, and configuring the same server
 app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc_css], routes_pathname_prefix="/dashboard/", server=server)
 
-# Configuring the SLATE style theme on the figures
+# * Configuring the SLATE style theme on the figures
 load_figure_template("SLATE")
 
-# Define filter labels
+# * Define filter labels
 FILTER_LABELS = {
     1: 'Fraudulent',
     0: 'Non-Fraudulent',
@@ -258,7 +263,7 @@ FILTER_LABELS = {
 }
 
 
-# Determining the app_layout
+# * Determining the app_layout
 app.layout = html.Div(
     style={"width": "80%", "height": "80%", "margin-left": "10%", "margin-right": "10%", "margin-top": "3%"},
     children=[
@@ -303,6 +308,8 @@ app.layout = html.Div(
     html.Br(),
     dbc.Row(dbc.Card(dcc.Graph(id="scatterMapBox", style={"width": "100%"})))
 ])
+
+# * Configuring the Callback function
 @app.callback(
     Output("header", "children"),
     Output("hBarChart", "figure"),
@@ -313,6 +320,8 @@ app.layout = html.Div(
     Input("features", "value"),
     Input("asc-desc", "value")
 )
+
+# * Defining the dashboard returned function
 def dashboard(filter_item, feature, sort_order):
     # * Prevent None values
     if filter_item is None:
