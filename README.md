@@ -132,12 +132,18 @@ To evaluate the decision tree model, we took the following approaches:
 
 1. **Model 1:** Running a “default” decision tree model and comparing it to the logistic regression model, assuming we receive better results, we move on with the evaluation methods below.
 
+![image](https://github.com/Kokolipa/fraudulent_transactions/assets/132874272/4dccab4a-d5e9-4628-90c2-07951aa2b40a)
+
+
 2. **Model 2:** Running a decision tree model with the following specifications:
 a. criterion = ‘log_loss’ -> To evaluate how well the model predicts probabilities for each class.
 b. splitter = ‘best’ -> A default spec to split the leaves of the tree.
 c. max_depth = 12 -> The depth of the tree model.
 d. random_state = 72
 e. max_features = 10 -> The maximum number of features that the algorithm considers when splitting a node.
+
+![image](https://github.com/Kokolipa/fraudulent_transactions/assets/132874272/65da6761-47e4-4caa-a607-6f7050b5f565)
+
 
 3. **Model 3:** Running a GridSearchCV tool to find the optimal parameters for the decision tree model with the following specifications enabled:
 a. criterion’:[‘gini’,‘entropy’, ‘log_loss’] -> Enabling the model to evaluate all the different evaluation parameters for the tree “impurity”/“probabilities of binary classification problems”/ “information gain” (entropy).
@@ -152,9 +158,11 @@ f. Scorer (recall) -> To focus our model on the most critical metric, recall.
 g. n_jobs -> specifies the number of CPU cores to use when performing the cross-validated grid search.
 h. cv=10 (cross-validation)-> We used k-fold 10 to separate our dataset into 10 equal subsets. So, we evaluate nine subsets of the data and leave one subset for validation.
 
-4. **Model 4:** Here, we created a balanced dataset. We used the X_train to find all the instances of fraudulent transactions (7000 +) and merged them with 10k records of non-fraudulent ones. We shuffled the data and ran the model with the grid search results.
+![image](https://github.com/Kokolipa/fraudulent_transactions/assets/132874272/532ab7f8-e4f0-497b-931d-9360a0863132)
 
-5. **Model 5:** Here, we assumed that categorical features didn’t provide meaningful information to the decision tree model and could potentially lead to confusion and clutter as opposed to focusing attention on details and accuracy. We went by the assumption due to the predict_proba results (we evaluated the x_test with predict proba and attached a y_test (is_fraud column) to compare the results with a histogram chart indicating inaccuracies). We ran all the previous models, including the logistic regression, and compared all the models to the best model found in the above three models.
+5. **Model 4:** Here, we created a balanced dataset. We used the X_train to find all the instances of fraudulent transactions (7000 +) and merged them with 10k records of non-fraudulent ones. We shuffled the data and ran the model with the grid search results.
+
+6. **Model 5:** Here, we assumed that categorical features didn’t provide meaningful information to the decision tree model and could potentially lead to confusion and clutter as opposed to focusing attention on details and accuracy. We went by the assumption due to the predict_proba results (we evaluated the x_test with predict proba and attached a y_test (is_fraud column) to compare the results with a histogram chart indicating inaccuracies). We ran all the previous models, including the logistic regression, and compared all the models to the best model found in the above three models.
    
 From the above models, we found that model 3 performed the best, with 0.9 recall score for Fraudulent transactions, 0.93 for non-fraudulent ones and an overall score of 0.93.
 - Regarding precision, it’s important to note that the precision score for fraudulent transactions was low at 0.06, while it was 1 for non-fraudulent transactions. This discrepancy arises due to the dataset’s imbalance, predominantly comprising non-fraudulent transactions. Consequently, achieving a high precision score for fraudulent transactions is inherently challenging in such imbalanced datasets.
