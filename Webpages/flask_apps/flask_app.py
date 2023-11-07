@@ -181,6 +181,10 @@ def upload():
 
                 # * DataFrame with is_fraud (predictions)
                 sample_df['is_fraud'] = is_fraud
+                sample_df['merchant'] = sample_df['merchant'].str.replace("fraud_", "")
+                sample_df['category'] = sample_df['category'].str.replace("_", " ")
+                sample_df['category'] = sample_df['category'].str.title()
+
 
                 sample_df.to_csv("processed_data.csv", index=False)
                 
@@ -292,7 +296,7 @@ app.layout = html.Div([
 
     # HERO BANNER
     html.Div(className='hero_banner', style={'height': '20px'}, children=[
-        html.Img(src='/static/images/homepg_image.jpg', width='100%', height='350px'),
+        html.Img(src='/static/images/homepg_image.jpg', width='100%', height='425px'),
         html.Div(className='container-fluid', children=[
             html.Br(),
             html.Div(className='row', children=[
@@ -315,9 +319,9 @@ app.layout = html.Div([
 
 
     html.Div(
-        style={"width": "80%", "height": "80%", "margin-left": "8%", "margin-right": "8%"},
+        style={"width": "80%", "height": "80%", "margin-left": "8%", "margin-right": "8%", "margin-top": "2%"},
         children=[
-        dbc.Row(html.H1(id="header"), style={"color":"white", "margin-top":"5px", "margin-bottom":"10px", "margin-left":"5px", "fontSize": "35px"}),
+        dbc.Row(html.H2(id="header"), style={"color":"white", "margin-top":"5px", "margin-bottom":"10px", "textAlign": "center"}),
         dbc.Row(dbc.Card(dbc.RadioItems(
             id="dataFilter",
             options= [
@@ -326,13 +330,14 @@ app.layout = html.Div([
                 {'label': 'All', 'value': -1}],
                 value=0,
                 inline=True
-        ), style={"textAlign":"center"})),
+        ), style={"textAlign":"center", "fontSize": "20px"})),
     html.Br(),
     dbc.Row([
         dbc.Col(dbc.Card(f"Total Transactions: {total_transactios_formatted}"), style={"textAlign":"center",
-                                                                                      "fontSize": "20px"},),
+                                                                                      "fontSize": "30px",
+                                                                                      "height": "6%"},),
         dbc.Col(dbc.Card(f"Fraudulent: {percentage_fraudulent_formatted}"), style={"textAlign":"center",
-                                                                                    "fontSize": "20px"}),
+                                                                                    "fontSize": "30px"}),
         ]),
     html.Br(),
     dbc.Row([
@@ -449,7 +454,7 @@ def dashboard(filter_item, feature, sort_order):
         annotations=[dict(text='Gender %',
                      x=0.5,
                      y=0.5,
-                     font_size=16,
+                     font_size=18,
                      showarrow=False)],
         title = {
             "x": 0.48

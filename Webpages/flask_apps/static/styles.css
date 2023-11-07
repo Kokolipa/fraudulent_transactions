@@ -31,7 +31,7 @@
 
 /* TRANSACTIONS HTML SETTINGS */
 .file_upload_layout{
-      margin-top: 450px;
+      margin-top: 625px;
       margin-bottom: 40px; 
       /* background-color: #f8f9fa; */
   }
@@ -98,6 +98,11 @@ h1{
     font-family: 'Roboto', serif;
     font-size: 50px;
     text-align:center
+}
+
+h2{
+  color: white;
+  font-size: 50px;
 }
 
 p{
