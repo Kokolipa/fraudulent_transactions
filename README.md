@@ -159,12 +159,28 @@ h. cv=10 (cross-validation)-> We used k-fold 10 to separate our dataset into 10 
 From the above models, we found that model 3 performed the best, with 0.9 recall score for Fraudulent transactions, 0.93 for non-fraudulent ones and an overall score of 0.93.
 - Regarding precision, it’s important to note that the precision score for fraudulent transactions was low at 0.06, while it was 1 for non-fraudulent transactions. This discrepancy arises due to the dataset’s imbalance, predominantly comprising non-fraudulent transactions. Consequently, achieving a high precision score for fraudulent transactions is inherently challenging in such imbalanced datasets.
 
-**Resource Files We Used:**
-
 **Our Python Script:**
 
 **Tools/Libraries We Imported:**
+#NOTE: Analysis libraries
+- import pandas as pd
+- import numpy as np 
+- import seaborn as sns
+- import matplotlib.pyplot as plt
 
+#NOTE: Importing model libraries
+- from sklearn.tree import DecisionTreeClassifier
+- from sklearn.linear_model import LogisticRegression
+- from sklearn.model_selection import train_test_split
+- from sklearn.metrics import confusion_matrix,classification_report # * Testing methods 
+- from sklearn.tree import plot_tree # * Tree plotting function
+- from sklearn.metrics import make_scorer, recall_score
+
+# * This library will be used to optimise the parameters of the decision tree
+- from sklearn.model_selection import GridSearchCV
+
+# * Pickling library
+- import pickle
 
 ### Part 3: Create and Deploy Web Application
 
