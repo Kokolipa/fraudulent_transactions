@@ -9,10 +9,6 @@ Our dataset consisted of two csv files containing over 1.8 million credit card t
 The data was sourced from Kaggle:
 
 https://www.kaggle.com/datasets/kartik2112/fraud-detection
-<br>
-
-**Project snippet**
-![gif-snippet](https://github.com/Kokolipa/fraudulent_transactions/blob/fraud_main/ML_and_dashboard/ML_Trees/p4-giff.gif)
 
 **Repository Folders and Contents:**
 ``` yml
