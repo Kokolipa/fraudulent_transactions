@@ -427,7 +427,7 @@ def dashboard(filter_item, feature, sort_order):
         df.groupby("age", as_index=False)['trans_num'].count(),
         x="age",
         y="trans_num",
-        title=f"Destribution of Transactions by Age ({filter_label})"
+        title=f"Distribution of Transactions by Age ({filter_label})"
         )
         .update_traces(marker_color='rgba(49, 252, 3, 0.6)', marker_line_color='#2ad104',
                        marker_line_width=1.5,
@@ -478,7 +478,7 @@ def dashboard(filter_item, feature, sort_order):
         lon=-100.9893
         ),
         mapbox_style="carto-darkmatter",
-        title=f"Destribution of Transactions ({filter_label})",
+        title=f"Distribution of Transactions ({filter_label})",
         hover_data=["city"],
         hover_name="city",
         )
