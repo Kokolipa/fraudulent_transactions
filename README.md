@@ -92,22 +92,22 @@ Our approach acknowledges this absence of correlation and relies on machine lear
 
 **Resource Files We Used:**
 
-    - fraudTest.csv
-    - fraudTrain.csv
+- fraudTest.csv
+- fraudTrain.csv
 
 **Our Jupyter Notebook Python Script:**
 
-    - EDA_and_preprocessing_data.ipynb
+- EDA_and_preprocessing_data.ipynb
 
 **Tools/Libraries We Imported:**
 
- import numpy as np # For numerical operations and calculations
- import pandas as pd # To read and manipulate the lending data as a dataframe
- from pathlib import Path # To specify the the file path for reading the csv file
- from sklearn.preprocessing import StandardScaler # To scale the data
- import seaborn as sns # To create pairplots and heatmaps to visualize data relationships and correlations
- import matplotlib.pyplot as plt # To create and display visualizations, including heatmaps and confusion matrices
-from scipy import stats # To calculate the Pearson correlation coefficient
+- import numpy as np # For numerical operations and calculations
+- import pandas as pd # To read and manipulate the lending data as a dataframe
+- from pathlib import Path # To specify the the file path for reading the csv file
+- from sklearn.preprocessing import StandardScaler # To scale the data
+- import seaborn as sns # To create pairplots and heatmaps to visualize data relationships and correlations
+- import matplotlib.pyplot as plt # To create and display visualizations, including heatmaps and confusion matrices
+- from scipy import stats # To calculate the Pearson correlation coefficient
 
 
 ### Part 2: Supervised Machine Learning Models
