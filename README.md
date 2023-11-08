@@ -156,11 +156,11 @@ To evaluate the decision tree model, we took the following approaches:
         
     c. ‘max_features’: [‘auto’, ‘sqrt’, ‘log2’] ->
         
-        auto = considering the best split at each node.
+   auto = considering the best split at each node.
         
-        sqrt = limiting the number of features to the square root of the total number of features in the dataset.
+   sqrt = limiting the number of features to the square root of the total number of features in the dataset.
         
-        ’log2 = Limiting the number of features to the base-2 logarithm of the total number of features in the dataset.
+   ’log2 = Limiting the number of features to the base-2 logarithm of the total number of features in the dataset.
         
     d. ’min_samples_split: [8000,10000,15000,25000, 30000] -> How many samples are required to split an internal node during the training process?
         
